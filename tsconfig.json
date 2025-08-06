@@ -1,0 +1,20 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts",
+    "nativewind-env.d.ts",
+    "app/screens/SplashScreen.jsx",
+    "app/screens/PopupModal.jsx",
+    "app/details/[id].jsx",
+    "app/screens/MainAppScreen.jsx"
+  ]
+}
