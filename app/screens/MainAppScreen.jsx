@@ -23,8 +23,9 @@ export default function MainAppScreen({ onSelectActivity }) {
   };
 
   const activities = useData();
+
   return (
-    <SafeAreaView className="flex-1">
+    <SafeAreaView className="flex-1 mb-4">
       <ScrollView className="p-6">
         <View className="py-4 px-6 md:px-12">
           <View className="container mx-auto flex items-center justify-between mb-4">
@@ -37,16 +38,37 @@ export default function MainAppScreen({ onSelectActivity }) {
           </View>
         </View>
 
-        <View className="activity-card bg-gradient-to-br from-orange-100 to-orange-200 rounded-2xl shadow-xl overflow-hidden transform transition-transform  duration-300 animate-popIn delay-100 mb-8 cursor-pointer">
+        <View
+          className="activity-card bg-gradient-to-br from-orange-100 to-orange-200 rounded-2xl overflow-hidden transform transition-transform duration-300 animate-popIn delay-100 mb-8 cursor-pointer"
+          style={{
+            shadowColor: "#000",
+            // shadowOffset: { width: 0, height: 1 },
+            shadowOpacity: 0.1,
+            shadowRadius: 3,
+            elevation: 1,
+          }}
+        >
           <View className="relative h-[500px]">
             <Image
               source={require("../../assets/images/bg.jpg")}
               alt="Hidden Waterfall Oasis"
               className="w-full h-full object-cover rounded-t-2xl"
             />
-            <View className="absolute top-4 left-4 bg-orange-500 text-white text-sm font-bold px-4 py-2 rounded-full shadow-md">
-              <Text>✨ Your Special Pick!</Text>
+
+            {/* Shadow correctly applied to View, not Text */}
+            <View
+              className="absolute top-4 left-4 bg-orange-500 px-4 py-2 rounded-full"
+              style={{
+                shadowColor: "#000",
+                // shadowOffset: { width: 0, height: 1 },
+                shadowOpacity: 0.1,
+                shadowRadius: 3,
+                elevation: 1,
+              }}
+            >
+              <Text className="text-white text-sm font-bold">✨ Your Special Pick!</Text>
             </View>
+
             <View className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6 pt-12 text-white flex flex-col justify-end">
               <View className="flex flex-wrap gap-2 mb-3">
                 <Text className="bg-green-100 text-green-700 text-sm font-medium px-3 py-1 rounded-full">Nature</Text>
@@ -57,27 +79,45 @@ export default function MainAppScreen({ onSelectActivity }) {
               </View>
               <Text className="text-3xl font-bold text-white mt-auto">The Whispering Falls Oasis</Text>
               <Text className="text-lg text-white mb-4">A serene natural escape, just 4.5 km away.</Text>
-              <View className="flex-1 flex-row text-white text-base ">
+
+              <View className="flex-1 flex-row text-white text-base">
                 <View className="flex-1 flex-row space-x-2 items-center">
                   <Ionicons name="star" size={16} color="#FBBF24" />
                   <Text className="text-white">4.9 {"(750 reviews)"}</Text>
                 </View>
                 <TouchableOpacity
                   onPress={() => router.push(`/details/10`)}
-                  className="bg-orange-500 text-white px-6 py-3 rounded-xl shadow-md text-lg font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-orange-400"
+                  className="bg-orange-500 px-6 py-3 rounded-xl font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-orange-400"
+                  style={{
+                    shadowColor: "#000",
+                    // shadowOffset: { width: 0, height: 2 },
+                    shadowOpacity: 0.2,
+                    shadowRadius: 4,
+                    elevation: 3,
+                  }}
                 >
-                  <Text>View Details</Text>
+                  <Text className="text-white text-lg">View Details</Text>
                 </TouchableOpacity>
               </View>
             </View>
           </View>
         </View>
-        {activities.map((activity, index) => (
-          <TouchableOpacity key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden mb-6 ">
-            <View className="relative h-72 w-full ">
-              <Image source={activity.image} resizeMode="cover" className="w-full h-full object-cover" />
 
-              <View className="absolute bottom-0 left-0 right-0 p-4 pt-8 bg-gradient-to-t from-black/70 to-transparent">
+        {activities.map((activity, index) => (
+          <TouchableOpacity
+            key={index}
+            className="bg-white rounded-2xl overflow-hidden mb-6"
+            style={{
+              shadowColor: "#000",
+              // shadowOffset: { width: 0, height: 4 },
+              shadowOpacity: 0.25,
+              shadowRadius: 6,
+              elevation: 6,
+            }}
+          >
+            <View className="relative h-72 w-full">
+              <Image source={activity.image} resizeMode="cover" className="w-full h-full object-cover" />
+              <View className="absolute bottom-0 left-0 right-0 p-4 pt-8 bg-gradient-to-t from-black/70 to-transparent bg-gray-900/20">
                 <View className="flex-row flex-wrap gap-2 mb-3">
                   {activity.tags.map((tag, i) => (
                     <Text key={i} className={`${getRandomTagColor()} text-xs font-medium px-2.5 py-0.5 rounded-full`}>
@@ -85,9 +125,8 @@ export default function MainAppScreen({ onSelectActivity }) {
                     </Text>
                   ))}
                 </View>
-
                 <Text className="text-xl font-semibold text-white mb-1">{activity.title}</Text>
-                <Text className="text-sm text-white mb-3 ">{activity.description}</Text>
+                <Text className="text-sm text-white mb-3">{activity.description}</Text>
 
                 <View className="flex-row justify-between items-center">
                   <View className="flex-row items-center space-x-1">
@@ -100,6 +139,13 @@ export default function MainAppScreen({ onSelectActivity }) {
                   <TouchableOpacity
                     onPress={() => router.push(`/details/${index}`)}
                     className="bg-orange-500 px-4 py-2 rounded-xl text-sm font-semibold"
+                    style={{
+                      shadowColor: "#000",
+                      // shadowOffset: { width: 0, height: 2 },
+                      shadowOpacity: 0.2,
+                      shadowRadius: 4,
+                      elevation: 3,
+                    }}
                   >
                     <Text className="text-white">View Details</Text>
                   </TouchableOpacity>

@@ -5,7 +5,7 @@ import { router, useLocalSearchParams } from "expo-router";
 import useData from "@/components/data";
 import { act } from "react";
 
-export default function DetailsScreen({ onBack }) {
+export default function DetailsScreen() {
   const { id } = useLocalSearchParams();
 
   const activity = useData(id);

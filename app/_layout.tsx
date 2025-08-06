@@ -8,7 +8,6 @@ export default function RootLayout() {
       <Stack.Screen name="screens/SplashScreen" />
       <Stack.Screen name="screens/PopupModal" />
       <Stack.Screen name="screens/MainAppScreen" />
-      <Stack.Screen name="screens/DetailsScreen" />
     </Stack>
   );
 }

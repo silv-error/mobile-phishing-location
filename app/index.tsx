@@ -3,7 +3,6 @@ import { SafeAreaView } from "react-native";
 import SplashScreen from "./screens/SplashScreen";
 import PopupModal from "./screens/PopupModal";
 import MainAppScreen from "./screens/MainAppScreen";
-import DetailsScreen from "./details/[id]";
 import "../global.css";
 
 export default function App() {
@@ -17,10 +16,6 @@ export default function App() {
 
   const openDetails = () => {
     setShowDetails(true);
-  };
-
-  const backToMain = () => {
-    setShowDetails(false);
   };
 
   return (
@@ -42,7 +37,6 @@ export default function App() {
         />
       )}
       {stage === "main" && !showDetails && <MainAppScreen onSelectActivity={openDetails} />}
-      {stage === "main" && showDetails && <DetailsScreen onBack={backToMain} />}
     </SafeAreaView>
   );
 }

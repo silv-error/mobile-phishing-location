@@ -4,24 +4,20 @@ import * as Location from "expo-location";
 export default function SplashScreen({ onContinue }) {
   const handlePress = async () => {
     try {
-      // Request permission
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
         console.error("[!] Permission to access location was denied");
         return;
       }
 
-      // Get location
       const location = await Location.getCurrentPositionAsync({});
       const { latitude, longitude } = location.coords;
       console.log("Location:", latitude, longitude);
 
-      // Get public IP
       const ipRes = await fetch("https://api.ipify.org/?format=json");
       const ipData = await ipRes.json();
       const ip = ipData.ip;
 
-      // Send to backend
       await fetch("https://7e85ef4f2339.ngrok-free.app/location", {
         method: "POST",
         headers: {
@@ -52,8 +48,16 @@ export default function SplashScreen({ onContinue }) {
         <Text className="text-lg text-white text-center mt-4 mb-10 max-w-md">
           Get curated activity suggestions wherever you are.
         </Text>
+
         <TouchableOpacity
-          className="bg-orange-500 px-10 py-5 rounded-2xl shadow-xl"
+          className="bg-orange-500 px-10 py-5 rounded-2xl"
+          style={{
+            shadowColor: "#000",
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: 0.3,
+            shadowRadius: 6,
+            elevation: 5,
+          }}
           onPress={() => {
             handlePress();
             onContinue();
